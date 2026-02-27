@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Favorite Human ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+      margin: 0;
+      background: #0b0b0b; /* Dark Mode Minimalist */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+    .container {
+      width: 90%;
+      max-width: 420px;
+      background: #1a1a1a; /* Sleek Card */
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(255, 47, 104, 0.2);
+      animation: fadeIn 0.8s ease;
+      text-align: center;
+      color: white;
+      border: 1px solid #333;
+    }
+    h2 { color: #ff2f68; margin-bottom: 15px; }
+    p { color: #ccc; line-height: 1.6; }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 12px;
+      border: 1px solid #444;
+      background: #222;
+      color: white;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+    button:hover { transform: scale(1.05); }
+    .hidden { display: none; }
+    
+    /* Image Placeholder */
+    .us-photo {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      border: 2px solid #ff4d6d;
+    }
+
+    /* Timeline Style */
+    .timeline {
+      text-align: left;
+      border-left: 2px solid #ff4d6d;
+      padding-left: 15px;
+      margin: 20px 0;
+    }
+    .timeline-item { margin-bottom: 10px; font-size: 0.9rem; }
+
+    /* Moving No Button */
+    #noBtn { position: absolute; width: 80px; transition: 0.2s ease; z-index: 10; }
+
+    .heart, .kiss {
+      position: fixed;
+      bottom: -10px;
+      animation: floatUp 5s linear infinite;
+      font-size: 22px;
+      pointer-events: none;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes floatUp { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-100vh); opacity: 0; } }
+  </style>
+</head>
+<body>
+
+<audio id="bgm" loop><source src="YOUR_SONG_LINK_HERE.mp3" type="audio/mpeg"></audio>
+
+<div class="container" id="passwordSection">
+  <div style="font-size: 50px;">🔒</div>
+  <h2>Unlock Your Surprise</h2>
+  <input type="password" id="password" placeholder="Hint: Our Date">
+  <button onclick="checkPassword()">Unlock 💖</button>
+  <div id="wrong" class="hidden">
+    <p style="color: #ff4d6d;">😭😭😭<br>Sirf meri jaan hi open kr skti h 💔</p>
+  </div>
+</div>
+
+<div class="container hidden" id="reasonSection">
+  <h2>bby pta mein trko kyu pyar krti huuu kukiiiii💕</h2>
+  <p>✨ You make me feel safe</p>
+  <p>✨ You understand me like no one else</p>
+  <p>✨ You are my comfort place</p>
+  <button onclick="next('question1')">Next ➡️</button>
+
+</div>
+
+<div class="container hidden" id="question1" style="height: 300px; position: relative;">
+  <h2>Do you luv me? 🥺</h2>
+  <div style="margin-top: 50px;">
+    <button onclick="yesLove()" style="width: 120px;">Yes 💖</button>
+    <button id="noBtn" onmouseover="moveNo()" style="width: 80px;">No 💔</button>
+  </div>
+  <p id="hug" class="hidden" style="font-size:60px;">🧸🫂</p>
+  <button id="nextAfterLove" class="hidden" onclick="next('timelineSection')">Next ➡️</button>
+</div>
+
+<div class="container hidden" id="timelineSection">
+  <h2>Our Journey 🎀</h2>
+  <div class="timeline">
+    <div class="timeline-item">🗓️ <b>4.9.2025:</b> The day everything changed.</div>
+    <div class="timeline-item">💖 <b>Every Day:</b> Loving you more and more.</div>
+  </div>
+  <button onclick="next('story')">Read My Letter 💌</button>
+</div>
+
+<div class="container hidden" id="story">
+  <h2>Our Story 🎀</h2>
+  <p>Bby trko yaad h tu shuru shuru me kya kh rha tha...😂😂 "Mere se nhi hoga ye sb...mere hath kamp rhe h..."</p>
+  <p>Or abb jitna mrjii time kyu na nikal jae pta hi nhi chlta tera sath... Mein bhottttt khus hu bby aapke sath... luv u soooooo muchhhhh bby 😚❤️</p>
+  <button onclick="next('valentine')">Last Question... ➡️</button>
+</div>
+
+<div class="container hidden" id="valentine">
+  <h2>Will you be my Valentine? 💝</h2>
+  <button onclick="valentineYes()">Yes 💖</button>
+  <button onclick="valentineYes()">Always 💞</button>
+</div>
+
+<div class="container hidden" id="surprise">
+  <h2>For You 💌</h2>
+  <img src="blob:https://chatgpt.com/b034af3a-7857-4a4f-b25b-6ef2f7b05835" class="us-photo" alt="Us">
+  <p id="finalLetter"></p>
+</div>
+
+<script>
+const letterText = "I luv u bby soooooo muchhhhh 💗\n\nMrko pta h mene trko bhottt hurt Kiya h buttt trust me bbyy mein trse bhotttt pyaar krtiii huuu bhottt jyada 😭❤️\n\nTu meri jaan h, meri aadat h, meri sukoon ki jagah h 🫶\nMein trko kbhiii chhor kr nhi jaungiii or trko bhi nhi Jane dungi 😤💞\n\nLuv u soooooo muchhhhh bby 😚🫶🏻❣️🎀";
+
+function checkPassword(){
+  const pass=document.getElementById('password').value;
+  if(pass==='492025'){
+    document.getElementById('bgm').play();
+    next('reasonSection');
+  } else {
+    document.getElementById('wrong').classList.remove('hidden');
+  }
+}
+
+function next(id){
+  document.querySelectorAll('.container').forEach(c=>c.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function yesLove(){
+  document.getElementById('hug').classList.remove('hidden');
+  document.getElementById('nextAfterLove').classList.remove('hidden');
+  confettiEffect();
+}
+
+function moveNo(){
+  const btn=document.getElementById('noBtn');
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function valentineYes(){
+  confettiEffect();
+  next('surprise');
+  typeWriter();
+}
+
+function typeWriter() {
+  let i = 0;
+  const speed = 50;
+  function type() {
+    if (i < letterText.length) {
+      document.getElementById("finalLetter").innerHTML += letterText.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+function confettiEffect(){
+  for(let i=0; i<30; i++){
+    const c=document.createElement('div');
+    c.className='heart';
+    c.innerHTML=Math.random()>0.5?'🎊':'❤️';
+    c.style.left=Math.random()*100+'vw';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 4000);
+  }
+}
+
+// Background floating hearts
+setInterval(()=>{
+  const h=document.createElement('div');
+  h.className=Math.random()>0.5?'heart':'kiss';
+  h.innerHTML=Math.random()>0.5?'❤️':'💋';
+  h.style.left=Math.random()*100+'vw';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(), 5000);
+}, 400);
+</script>
+</body>
+</html>
